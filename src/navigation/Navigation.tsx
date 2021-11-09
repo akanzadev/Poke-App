@@ -13,9 +13,9 @@ const Tab = createBottomTabNavigator();
 
 export default function Navigation() {
   return (
-    <Tab.Navigator initialRouteName="Pokedex">
+    <Tab.Navigator initialRouteName="AccountScreen">
       <Tab.Screen
-        name="Account"
+        name="AccountScreen"
         component={AccountNavigation}
         options={{
           tabBarLabel: "Mi cuenta",
@@ -28,7 +28,7 @@ export default function Navigation() {
         }}
       />
       <Tab.Screen
-        name="Pokedex"
+        name="PokedexScreen"
         component={PokedexNavigation}
         options={{
           tabBarLabel: "",
@@ -39,7 +39,7 @@ export default function Navigation() {
         }}
       />
       <Tab.Screen
-        name="Favorite"
+        name="FavoriteScreen"
         component={FavoriteNavigation}
         options={{
           tabBarLabel: "Favoritos",

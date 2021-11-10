@@ -9,13 +9,21 @@ import {
 import { capitalize } from "lodash";
 import { Pokemon } from "../utils/models/poke";
 import getColorByPokemonType from "../utils/getColorByPokemonType";
+import { useNavigation } from "@react-navigation/native";
+import { NavigatorScreenParams } from "@react-navigation/native";
+import { PokemonNavigationProp, Routes } from "../navigation/Routes";
+
 interface Props {
   pokemon: Pokemon;
 }
 
 export default function PokemonCard({ pokemon }: Props) {
+  const navigation = useNavigation<PokemonNavigationProp<Routes.Pokedex>>();
   const goToPokemon = () => {
     console.log("goToPokemon", pokemon.name);
+    navigation.navigate(Routes.Pokemon, {
+      id: pokemon.id,
+    });
   };
   const pokemonColor = getColorByPokemonType(pokemon.type);
   const bgStyles = { backgroundColor: pokemonColor, ...styles.bgStyles };

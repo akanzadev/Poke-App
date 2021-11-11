@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import { getPokemonsApi, getPokemonDetailsByUrlApi } from "../api/pokemon";
-import { Pokemons, ResultApi } from "../utils/models/response";
 import { Pokemon } from "../utils/models/poke";
 import PokemonList from "../components/PokemonList";
 
-export default function Pokedex() {
+export default function PokedexScreen() {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
   const [nextUrl, setNextUrl] = useState<string | undefined | null>(null);
 

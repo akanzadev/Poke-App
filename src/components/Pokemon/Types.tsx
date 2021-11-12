@@ -1,4 +1,4 @@
-import { map, capitalize } from 'lodash';
+import { map, capitalize } from "lodash";
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Type } from "../../utils/models/pokeDetails";
@@ -12,6 +12,7 @@ export default function Types({ types }: Props) {
     <View style={styles.content}>
       {map(types, (item, index) => (
         <View
+          key={index}
           style={{
             ...styles.pill,
             backgroundColor: getColorByPokemonType(item.type.name),
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     backgroundColor: "#fff",
   },
-  text:{
+  text: {
     fontSize: 20,
-  }
+  },
 });

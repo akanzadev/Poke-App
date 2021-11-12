@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ScrollView } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome5";
 import { getPokemonDetailsApi } from "../api/pokemon";
 import Header from "../components/Pokemon/Header";
 import Stats from "../components/Pokemon/Stats";
@@ -12,6 +13,25 @@ export default function PokemonScreen({
   navigation,
 }: PokemonScreenProps) {
   const [pokemon, setPokemon] = useState<PokemonModel | undefined>();
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerStyle: {
+        backgroundColor: "transparent",
+      },
+      headerRight: () => null,
+      headerLeft: () => (
+        <Icon
+          name="arrow-left"
+          color="#fff"
+          size={20}
+          style={{ marginLeft: 20 }}
+          onPress={() => navigation.goBack()}
+        />
+      ),
+    });
+  }, [navigation, params]);
+
   useEffect(() => {
     (async () => {
       try {

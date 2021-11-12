@@ -3,6 +3,8 @@ import { View, Text, StyleSheet, SafeAreaView, Image } from "react-native";
 import { capitalize } from "lodash";
 import getColorByPokemonType from "../../utils/getColorByPokemonType";
 
+import { useHeaderHeight } from "@react-navigation/elements";
+
 interface Props {
   name: string;
   order: number;
@@ -13,6 +15,8 @@ interface Props {
 export default function Header({ name, order, image, type }: Props) {
   const color = getColorByPokemonType(type);
   const bgStyle = { backgroundColor: color, ...styles.bg };
+  const headerHeight = useHeaderHeight();
+  console.log(headerHeight.valueOf());
   return (
     <>
       <View style={bgStyle} />
@@ -32,7 +36,7 @@ export default function Header({ name, order, image, type }: Props) {
 const styles = StyleSheet.create({
   bg: {
     width: "100%",
-    height: 400,
+    height: 450,
     position: "absolute",
     borderBottomEndRadius: 300,
     borderBottomLeftRadius: 300,
@@ -46,7 +50,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingTop: 40,
+    paddingTop: 53,
   },
   name: {
     color: "#fff",

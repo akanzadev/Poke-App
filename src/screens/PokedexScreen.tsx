@@ -3,11 +3,12 @@ import { View } from "react-native";
 import { getPokemonsApi, getPokemonDetailsByUrlApi } from "../api/pokemon";
 import { Pokemon } from "../utils/models/poke";
 import PokemonList from "../components/PokemonList";
+import Loading from "../components/Loading";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function PokedexScreen() {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
   const [nextUrl, setNextUrl] = useState<string | undefined | null>(null);
-
   useEffect(() => {
     (async () => {
       await loadPokemons();
@@ -39,12 +40,16 @@ export default function PokedexScreen() {
     }
   };
   return (
-    <View>
-      <PokemonList
-        pokemons={pokemons}
-        loadPokemons={loadPokemons}
-        isNext={nextUrl}
-      />
-    </View>
+    <SafeAreaView>
+      {pokemons.length === 0 ? (
+        <PokemonList
+          pokemons={pokemons}
+          loadPokemons={loadPokemons}
+          isNext={nextUrl}
+        />
+      ) : (
+        <Loading />
+      )}
+    </SafeAreaView>
   );
 }

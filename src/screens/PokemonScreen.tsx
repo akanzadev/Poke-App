@@ -19,6 +19,7 @@ export default function PokemonScreen({
       headerStyle: {
         backgroundColor: "transparent",
       },
+      headerShadowVisible: false,
       headerRight: () => null,
       headerLeft: () => (
         <Icon

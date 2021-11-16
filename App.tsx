@@ -3,7 +3,7 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import Navigation from "./src/navigation/Navigation";
-import { AuthProvider } from "./src/context/AuthContext";
+import { AuthProvider } from "./src/context/Auth/AuthProvider";
 
 export default function App() {
   return (

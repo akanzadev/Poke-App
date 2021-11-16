@@ -1,0 +1,11 @@
+{
+  "usuario": {
+    "rol": "USER_ROLE",
+    "estado": true,
+    "google": false,
+    "nombre": "romel1",
+    "correo": "romel@gmail.com",
+    "uid": "6123f92c3f23552d84bc7581"
+  },
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MTIzZjkyYzNmMjM1NTJkODRiYzc1ODEiLCJpYXQiOjE2MzcwNzExODksImV4cCI6MTYzNzA4NTU4OX0.WA75WhDMImFaPRupk_kvzmkmDiPf0Mg0uAI7lPblj_c"
+}

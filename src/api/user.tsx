@@ -1,22 +1,22 @@
 import { API_AUTH } from "../utils/constants";
 import { PokeUser } from "../utils/models/pokeUser";
-import { User } from "../utils/models/user";
 
-// First Promise
-export async function loginWithUser(user: User): Promise<PokeUser | undefined> {
+export async function findUserById(
+  uid: string,
+  token: string
+): Promise<PokeUser | undefined> {
   return new Promise((resolve, reject) => {
-    fetch(`${API_AUTH}/auth/login`, {
-      method: "POST",
+    fetch(`${API_AUTH}/auth/${uid}`, {
+      method: "GET",
       headers: {
-        "Content-Type": "application/json",
+        Authentication: token,
       },
-      body: JSON.stringify(user),
     })
       .then((response) => {
         if (response.status === 200) {
           return response.json();
         } else {
-          throw new Error("Error al iniciar sesión");
+          throw new Error("La sesión ah expirado");
         }
       })
       .then((response) => {

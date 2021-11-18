@@ -1,5 +1,5 @@
 import { API_HOST } from "../utils/constants";
-import { ResultApi } from "../utils/models/response";
+import { ResultApi } from "../utils/models/pokeResponse";
 import { PokeDetails } from "../utils/models/pokeDetails";
 import { PokemonModel } from "../utils/models/pokemon";
 

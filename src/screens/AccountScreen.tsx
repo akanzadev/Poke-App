@@ -5,6 +5,11 @@ import UserData from "../components/Auth/UserData";
 import useAuth from "../hooks/useAuth";
 
 export default function AccountScreen() {
-  const { user } = useAuth();
-  return <View>{user ? <UserData /> : <LoginForm />}</View>;
+  const { auth: user } = useAuth();
+  const { token, uid, isAuthenticated } = user;
+  return (
+    <View style={{ position: "relative" }}>
+      {isAuthenticated ? <UserData token={token} uid={uid} /> : <LoginForm />}
+    </View>
+  );
 }

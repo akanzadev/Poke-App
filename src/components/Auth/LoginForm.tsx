@@ -1,19 +1,23 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
   TextInput,
   Button,
-  Keyboard,
   StyleSheet,
 } from "react-native";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+
+
 import useAuth from "../../hooks/useAuth";
 import { loginWithUser } from "../../api/auth";
+import Loading from "../Loading";
 
 export default function LoginForm() {
-  const { login, auth } = useAuth();
+  const { login } = useAuth();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const formik = useFormik({
     initialValues: initialValues(),
     validateOnMount: false,
@@ -21,44 +25,51 @@ export default function LoginForm() {
     validationSchema: validationSchema(),
     onSubmit: (values) => {
       // Peticion http a servidor
-      loginWithUser({ correo: values.email, password: values.password }).then(
-        (res) => {
+      setLoading(true);
+      loginWithUser({ correo: values.email, password: values.password })
+        .then((res) => {
           if (res) {
             login(res);
+            setLoading(false);
           }
-        }
-      );
+        })
+        .catch((err) => {
+          setLoading(false);
+          console.log(err.message);
+          setError(err.message);
+        });
     },
   });
 
   return (
-    <View>
-      {auth.isAuthenticated ? (
-        <Text>Estas autenticado</Text>
-      ) : (
-        <Text>No estas autenticado</Text>
+    <>
+      {loading && <Loading />}
+      {!loading && (
+        <View style={{ height: "100%" }}>
+          <Text style={styles.title}>Iniciar Sesión</Text>
+          <TextInput
+            placeholder="Email"
+            style={styles.input}
+            autoCapitalize="none"
+            value={formik.values.email}
+            onChangeText={(text) => formik.setFieldValue("email", text)}
+            focusable={false}
+          ></TextInput>
+          <TextInput
+            placeholder="Password"
+            value={formik.values.password}
+            onChangeText={(text) => formik.setFieldValue("password", text)}
+            style={styles.input}
+            autoCapitalize="none"
+            secureTextEntry={true}
+            focusable={false}
+          ></TextInput>
+          <Button title="Login" onPress={() => formik.handleSubmit()} />
+          <Text style={styles.error}>{formik.errors.email}</Text>
+          <Text style={styles.error}>{error}</Text>
+        </View>
       )}
-      <Text style={styles.title}>Iniciar Sesión</Text>
-      <TextInput
-        placeholder="Email"
-        style={styles.input}
-        autoCapitalize="none"
-        value={formik.values.email}
-        onChangeText={(text) => formik.setFieldValue("email", text)}
-        focusable={false}
-      ></TextInput>
-      <TextInput
-        placeholder="Password"
-        value={formik.values.password}
-        onChangeText={(text) => formik.setFieldValue("password", text)}
-        style={styles.input}
-        autoCapitalize="none"
-        secureTextEntry={true}
-        focusable={false}
-      ></TextInput>
-      <Button title="Login" onPress={() => formik.handleSubmit()} />
-      <Text style={styles.error}>{formik.errors.email}</Text>
-    </View>
+    </>
   );
 }
 
@@ -92,6 +103,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   error: {
+    fontSize: 16,
     color: "red",
     textAlign: "center",
     marginTop: 20,

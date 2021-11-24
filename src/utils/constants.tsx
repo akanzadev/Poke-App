@@ -1,4 +1,6 @@
 export const API_HOST = "https://pokeapi.co/api/v2";
+export const API_AUTH =
+  "https://rest-server-cafe-romel.herokuapp.com/api";
 export const POKEMON_TYPE_COLORS = {
   normal: "#A8A878",
   fighting: "#C03028",

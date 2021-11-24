@@ -41,7 +41,7 @@ export default function PokedexScreen() {
   };
   return (
     <SafeAreaView>
-      {pokemons.length === 0 ? (
+      {pokemons.length !== 0 ? (
         <PokemonList
           pokemons={pokemons}
           loadPokemons={loadPokemons}

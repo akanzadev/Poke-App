@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { View } from "react-native";
 import { getPokemonsApi, getPokemonDetailsByUrlApi } from "../api/pokemon";
 import { Pokemon } from "../utils/models/poke";
 import PokemonList from "../components/PokemonList";
@@ -14,7 +13,6 @@ export default function PokedexScreen() {
       await loadPokemons();
     })();
   }, []);
-
   const loadPokemons = async () => {
     try {
       const response = await getPokemonsApi(nextUrl);

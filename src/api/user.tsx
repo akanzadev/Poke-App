@@ -1,15 +1,16 @@
-import { API_AUTH } from "../utils/constants";
-import { PokeUser } from "../utils/models/pokeUser";
+import { API } from "../utils/constants";
+import { PokeUserInfo } from "../utils/models/pokeUserInfo";
 
 export async function findUserById(
-  uid: string,
+  uid: string | number,
   token: string
-): Promise<PokeUser | undefined> {
+): Promise<PokeUserInfo | undefined> {
   return new Promise((resolve, reject) => {
-    fetch(`${API_AUTH}/auth/${uid}`, {
+    fetch(`${API}/users/${uid}`, {
       method: "GET",
       headers: {
         Authentication: token,
+        Accept: "application/json",
       },
     })
       .then((response) => {

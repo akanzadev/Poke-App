@@ -1,14 +1,7 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  Button,
-  StyleSheet,
-} from "react-native";
+import { View, Text, TextInput, Button, StyleSheet } from "react-native";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-
 
 import useAuth from "../../hooks/useAuth";
 import { loginWithUser } from "../../api/auth";
@@ -26,7 +19,7 @@ export default function LoginForm() {
     onSubmit: (values) => {
       // Peticion http a servidor
       setLoading(true);
-      loginWithUser({ correo: values.email, password: values.password })
+      loginWithUser(values)
         .then((res) => {
           if (res) {
             login(res);
@@ -75,8 +68,8 @@ export default function LoginForm() {
 
 function initialValues() {
   return {
-    email: "romel@gmail.com",
-    password: "1234567",
+    email: "test2@gmail.com",
+    password: "test2",
   };
 }
 

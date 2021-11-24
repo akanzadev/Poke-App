@@ -1,5 +1,5 @@
 export interface AuthModel {
   token: string;
-  uid: string;
+  uid: string | number;
   isAuthenticated: boolean;
 }

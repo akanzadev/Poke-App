@@ -6,7 +6,7 @@ import { PokeUser } from "../../utils/models/pokeUser";
 
 const INITIAL_STATE: AuthModel = {
   token: "",
-  uid: "",
+  uid: "" ,
   isAuthenticated: false,
 };
 
@@ -21,8 +21,8 @@ export function AuthProvider({ children }: Props) {
     dispatch({
       type: "LOGIN",
       payload: {
-        token: data.token,
-        uid: data.usuario.uid,
+        token: data.data.token,
+        uid: data.data.user.id,
         isAuthenticated: true,
       },
     });

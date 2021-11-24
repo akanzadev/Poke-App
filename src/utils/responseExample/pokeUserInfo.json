@@ -1,0 +1,12 @@
+{
+  "statusCode": 200,
+  "message": "Find a User",
+  "data": {
+    "id": 2,
+    "name": "test5",
+    "lastname": "test2 test2",
+    "email": "test2@gmail.com",
+    "age": 6,
+    "status": true
+  }
+}

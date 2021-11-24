@@ -17,9 +17,9 @@ interface Props {
 }
 
 export default function PokemonCard({ pokemon }: Props) {
-  const navigation = useNavigation<PokemonNavigationProp<Routes.Pokedex>>();
+  const navigation = useNavigation<PokemonNavigationProp<Routes.POKEDEX>>();
   const goToPokemon = () => {
-    navigation.navigate(Routes.Pokemon, {
+    navigation.navigate(Routes.POKEMON, {
       id: pokemon.id,
     });
   };
